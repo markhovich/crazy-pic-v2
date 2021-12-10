@@ -1,0 +1,94 @@
+<div>
+  <h2 id="page-heading" data-cy="PictureHeading">
+    <span jhiTranslate="crazyPicApp.picture.home.title">Pictures</span>
+
+    <div class="d-flex justify-content-end">
+      <button class="btn btn-info mr-2" (click)="loadAll()" [disabled]="isLoading">
+        <fa-icon icon="sync" [spin]="isLoading"></fa-icon>
+        <span jhiTranslate="crazyPicApp.picture.home.refreshListLabel">Refresh List</span>
+      </button>
+
+      <button
+        id="jh-create-entity"
+        data-cy="entityCreateButton"
+        class="btn btn-primary jh-create-entity create-picture"
+        [routerLink]="['/picture/new']"
+      >
+        <fa-icon icon="plus"></fa-icon>
+        <span jhiTranslate="crazyPicApp.picture.home.createLabel"> Create a new Picture </span>
+      </button>
+    </div>
+  </h2>
+
+  <jhi-alert-error></jhi-alert-error>
+
+  <jhi-alert></jhi-alert>
+
+  <div class="alert alert-warning" id="no-result" *ngIf="pictures?.length === 0">
+    <span jhiTranslate="crazyPicApp.picture.home.notFound">No pictures found</span>
+  </div>
+
+  <div class="table-responsive" id="entities" *ngIf="pictures && pictures.length > 0">
+    <table class="table table-striped" aria-describedby="page-heading">
+      <thead>
+        <tr>
+          <th scope="col"><span jhiTranslate="crazyPicApp.picture.id">Id</span></th>
+          <th scope="col"><span jhiTranslate="crazyPicApp.picture.name">Name</span></th>
+          <th scope="col"><span jhiTranslate="crazyPicApp.picture.url">Url</span></th>
+          <th scope="col"><span jhiTranslate="crazyPicApp.picture.photograph">Photograph</span></th>
+          <th scope="col"><span jhiTranslate="crazyPicApp.picture.comment">Comment</span></th>
+          <th scope="col"><span jhiTranslate="crazyPicApp.picture.nbVotes">Nb Votes</span></th>
+          <th scope="col"><span jhiTranslate="crazyPicApp.picture.note">Note</span></th>
+          <th scope="col"><span jhiTranslate="crazyPicApp.picture.contestId">Contest Id</span></th>
+          <th scope="col"></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let picture of pictures; trackBy: trackId" data-cy="entityTable">
+          <td>
+            <a [routerLink]="['/picture', picture.id, 'view']">{{ picture.id }}</a>
+          </td>
+          <td>{{ picture.name }}</td>
+          <td>{{ picture.url }}</td>
+          <td>{{ picture.photograph }}</td>
+          <td>{{ picture.comment }}</td>
+          <td>{{ picture.nbVotes }}</td>
+          <td>{{ picture.note }}</td>
+          <td>
+            <div *ngIf="picture.contestId">
+              <a [routerLink]="['/contest', picture.contestId?.id, 'view']">{{ picture.contestId?.id }}</a>
+            </div>
+          </td>
+          <td class="text-right">
+            <div class="btn-group">
+              <button
+                type="submit"
+                [routerLink]="['/picture', picture.id, 'view']"
+                class="btn btn-info btn-sm"
+                data-cy="entityDetailsButton"
+              >
+                <fa-icon icon="eye"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
+              </button>
+
+              <button
+                type="submit"
+                [routerLink]="['/picture', picture.id, 'edit']"
+                class="btn btn-primary btn-sm"
+                data-cy="entityEditButton"
+              >
+                <fa-icon icon="pencil-alt"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
+              </button>
+
+              <button type="submit" (click)="delete(picture)" class="btn btn-danger btn-sm" data-cy="entityDeleteButton">
+                <fa-icon icon="times"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>
+              </button>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

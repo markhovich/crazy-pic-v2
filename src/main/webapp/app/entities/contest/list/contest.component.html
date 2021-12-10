@@ -1,0 +1,86 @@
+<div>
+  <h2 id="page-heading" data-cy="ContestHeading">
+    <span jhiTranslate="crazyPicApp.contest.home.title">Contests</span>
+
+    <div class="d-flex justify-content-end">
+      <button class="btn btn-info mr-2" (click)="loadAll()" [disabled]="isLoading">
+        <fa-icon icon="sync" [spin]="isLoading"></fa-icon>
+        <span jhiTranslate="crazyPicApp.contest.home.refreshListLabel">Refresh List</span>
+      </button>
+
+      <button
+        id="jh-create-entity"
+        data-cy="entityCreateButton"
+        class="btn btn-primary jh-create-entity create-contest"
+        [routerLink]="['/contest/new']"
+      >
+        <fa-icon icon="plus"></fa-icon>
+        <span jhiTranslate="crazyPicApp.contest.home.createLabel"> Create a new Contest </span>
+      </button>
+    </div>
+  </h2>
+
+  <jhi-alert-error></jhi-alert-error>
+
+  <jhi-alert></jhi-alert>
+
+  <div class="alert alert-warning" id="no-result" *ngIf="contests?.length === 0">
+    <span jhiTranslate="crazyPicApp.contest.home.notFound">No contests found</span>
+  </div>
+
+  <div class="table-responsive" id="entities" *ngIf="contests && contests.length > 0">
+    <table class="table table-striped" aria-describedby="page-heading">
+      <thead>
+        <tr>
+          <th scope="col"><span jhiTranslate="crazyPicApp.contest.id">Id</span></th>
+          <th scope="col"><span jhiTranslate="crazyPicApp.contest.name">Name</span></th>
+          <th scope="col"><span jhiTranslate="crazyPicApp.contest.startDate">Start Date</span></th>
+          <th scope="col"><span jhiTranslate="crazyPicApp.contest.endDate">End Date</span></th>
+          <th scope="col"><span jhiTranslate="crazyPicApp.contest.url">Url</span></th>
+          <th scope="col"><span jhiTranslate="crazyPicApp.contest.userId">User Id</span></th>
+          <th scope="col"></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let contest of contests; trackBy: trackId" data-cy="entityTable">
+          <td>
+            <a [routerLink]="['/contest', contest.id, 'view']">{{ contest.id }}</a>
+          </td>
+          <td>{{ contest.name }}</td>
+          <td>{{ contest.startDate | formatMediumDatetime }}</td>
+          <td>{{ contest.endDate | formatMediumDatetime }}</td>
+          <td>{{ contest.url }}</td>
+          <td>{{ contest.userId }}</td>
+          <td class="text-right">
+            <div class="btn-group">
+              <button
+                type="submit"
+                [routerLink]="['/contest', contest.id, 'view']"
+                class="btn btn-info btn-sm"
+                data-cy="entityDetailsButton"
+              >
+                <fa-icon icon="eye"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
+              </button>
+
+              <button
+                type="submit"
+                [routerLink]="['/contest', contest.id, 'edit']"
+                class="btn btn-primary btn-sm"
+                data-cy="entityEditButton"
+              >
+                <fa-icon icon="pencil-alt"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
+              </button>
+
+              <button type="submit" (click)="delete(contest)" class="btn btn-danger btn-sm" data-cy="entityDeleteButton">
+                <fa-icon icon="times"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>
+              </button>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

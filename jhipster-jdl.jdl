@@ -1,0 +1,25 @@
+
+entity Contest {
+	id Long required,
+    name String required,
+    startDate Instant,
+    endDate Instant,
+    url String required,
+    userId Long
+}
+
+entity Picture {
+	id Long required,
+    name String required,
+    url String required,
+    photograph String,
+    comment String,
+    nbVotes Integer,
+    note Long,
+}
+
+// defining multiple OneToMany relationships with comments
+relationship OneToMany {
+
+	Contest to Picture{contestId}
+}

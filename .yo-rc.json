@@ -41,6 +41,8 @@
     "clientPackageManager": "npm",
     "languages": ["fr", "en", "es"],
     "enableGradleEnterprise": false,
-    "cypressCoverage": false
+    "cypressCoverage": false,
+    "entities": ["Contest", "Picture"],
+    "lastLiquibaseTimestamp": 1639075763000
   }
 }

@@ -1,0 +1,29 @@
+{
+  "crazyPicApp": {
+    "contest": {
+      "home": {
+        "title": "Contests",
+        "refreshListLabel": "Refrescar lista",
+        "createLabel": "Crear nuevo Contest",
+        "createOrEditLabel": "Crear o editar Contest",
+        "notFound": "Ningún Contests encontrado"
+      },
+      "created": "Un nuevo Contest ha sido creado con el identificador {{ param }}",
+      "updated": "Un Contest ha sido actualizado con el identificador {{ param }}",
+      "deleted": "Un Contest ha sido eliminado con el identificador {{ param }}",
+      "delete": {
+        "question": "¿Seguro que quiere eliminar Contest {{ id }}?"
+      },
+      "detail": {
+        "title": "Contest"
+      },
+      "id": "Id",
+      "name": "Name",
+      "startDate": "Start Date",
+      "endDate": "End Date",
+      "url": "Url",
+      "userId": "User Id",
+      "picture": "Picture"
+    }
+  }
+}

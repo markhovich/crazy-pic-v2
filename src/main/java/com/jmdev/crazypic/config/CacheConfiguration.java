@@ -51,6 +51,9 @@ public class CacheConfiguration {
             createCache(cm, com.jmdev.crazypic.domain.User.class.getName());
             createCache(cm, com.jmdev.crazypic.domain.Authority.class.getName());
             createCache(cm, com.jmdev.crazypic.domain.User.class.getName() + ".authorities");
+            createCache(cm, com.jmdev.crazypic.domain.Contest.class.getName());
+            createCache(cm, com.jmdev.crazypic.domain.Contest.class.getName() + ".pictures");
+            createCache(cm, com.jmdev.crazypic.domain.Picture.class.getName());
             // jhipster-needle-ehcache-add-entry
         };
     }

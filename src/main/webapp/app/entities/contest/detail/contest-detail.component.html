@@ -1,0 +1,48 @@
+<div class="row justify-content-center">
+  <div class="col-8">
+    <div *ngIf="contest">
+      <h2 data-cy="contestDetailsHeading"><span jhiTranslate="crazyPicApp.contest.detail.title">Contest</span></h2>
+
+      <hr />
+
+      <jhi-alert-error></jhi-alert-error>
+
+      <jhi-alert></jhi-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="crazyPicApp.contest.id">Id</span></dt>
+        <dd>
+          <span>{{ contest.id }}</span>
+        </dd>
+        <dt><span jhiTranslate="crazyPicApp.contest.name">Name</span></dt>
+        <dd>
+          <span>{{ contest.name }}</span>
+        </dd>
+        <dt><span jhiTranslate="crazyPicApp.contest.startDate">Start Date</span></dt>
+        <dd>
+          <span>{{ contest.startDate | formatMediumDatetime }}</span>
+        </dd>
+        <dt><span jhiTranslate="crazyPicApp.contest.endDate">End Date</span></dt>
+        <dd>
+          <span>{{ contest.endDate | formatMediumDatetime }}</span>
+        </dd>
+        <dt><span jhiTranslate="crazyPicApp.contest.url">Url</span></dt>
+        <dd>
+          <span>{{ contest.url }}</span>
+        </dd>
+        <dt><span jhiTranslate="crazyPicApp.contest.userId">User Id</span></dt>
+        <dd>
+          <span>{{ contest.userId }}</span>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+      </button>
+
+      <button type="button" [routerLink]="['/contest', contest.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+      </button>
+    </div>
+  </div>
+</div>
